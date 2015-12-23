@@ -15,8 +15,8 @@
 		InputCheck : function (SetStyle) {
 			var config = [{'border':'1px solid red'}];
 			if (SetStyle){$.extend(config, SetStyle);}
-			var CssStyle = '';
-			/*for (var i = 0; i < config.length; i++) {
+			/*var CssStyle = '';
+			for (var i = 0; i < config.length; i++) {
 				for (var idx_Key in config[i]) {
 					CssStyle += idx_Key + ' : '+ config[i][idx_Key] + ';';
 				}
@@ -30,7 +30,12 @@
 					$(this).find('input')[i].setAttribute('type','password');
 				}
 			}
-			$(this).find('input').on('change',function(){
+			var InputObj = $(this);
+			if($(this).type != 'input'){
+				InputObj = $(this).find('input');
+			}
+
+			InputObj.on('change',function(){
 				if($(this)[0].getAttribute('cktype') && $(this)[0].value != ''){
 					if(!CheckFunction($(this)[0].getAttribute('cktype'),$(this)[0].value)){
 						$(this).addClass('InputError');
